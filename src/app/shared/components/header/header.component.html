@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light pt-3 pt-lg-0">
+<nav class="navbar navbar-expand-lg navbar-light pt-3 pt-lg-2">
     <a class="navbar-brand text-white" [routerLink]="['/home']" >RollerClub</a>
     <button class="navbar-toggler btn btn-light" type="button" 
         data-toggle="collapse" 
@@ -19,6 +19,16 @@
         </li>
         <li class="nav-item my-1 my-lg-0">
             <a mat-raised-button routerLinkActive="active" [routerLink]="['/contact']">Contact</a>
+        </li>
+        <li class="nav-item my-1 my-lg-0">
+            <a
+                class="shoppin-cart"
+                mat-raised-button
+                (click)="installByUser()"
+                
+                >
+                App
+            </a>
         </li>
         <li class="nav-item my-1 my-lg-0">
             <a
