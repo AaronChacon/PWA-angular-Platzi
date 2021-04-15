@@ -20,12 +20,11 @@
         <li class="nav-item my-1 my-lg-0">
             <a mat-raised-button routerLinkActive="active" [routerLink]="['/contact']">Contact</a>
         </li>
-        <li class="nav-item my-1 my-lg-0">
+        <li class="nav-item my-1 my-lg-0" *ngIf="installEvent">
             <a
                 class="shoppin-cart"
                 mat-raised-button
                 (click)="installByUser()"
-                
                 >
                 App
             </a>

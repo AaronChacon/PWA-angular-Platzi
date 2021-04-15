@@ -3,7 +3,7 @@
   "short_name": "Rollerclub",
   "theme_color": "#3f51b5",
   "background_color": "#fafafa",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [

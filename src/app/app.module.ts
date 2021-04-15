@@ -10,8 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
+
 // Components
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
@@ -28,6 +31,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireMessagingModule,
+    AngularFirestoreModule,
     AppRoutingModule,
     FormsModule,
     SharedModule,

@@ -1,28 +1,55 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+
+interface Token {
+  token: string;
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-  /* installEvent;
+  private tokensCollection: AngularFirestoreCollection<any>;
 
-  @HostListener('window:beforeinstallprompt', ['$event'])
-  onBeforeiInstallPrompt(event: Event){
-    event.preventDefault();
-    console.log(event);
-    this.installEvent = event
+  constructor(
+    private swUpdate:SwUpdate,
+    private messaging: AngularFireMessaging,
+    private database: AngularFirestore 
+  ) {
+    this.tokensCollection = this.database.collection<Token>('tokens');
   }
 
-  installByUser() {
-    if (this.installEvent ) {
-      this.installEvent.prompt();
-      this.installEvent.userChoise()
-      .then(rta => {
-        console.log(rta);
-      });
-    }
-  } */
+  ngOnInit(): void {
+    this.updatePWA();
+    this.resquestPermission();
+    this.listenNotification();
+  }
+
+  updatePWA(){
+    this.swUpdate.available.subscribe(value => {
+      console.log('update', value);
+      window.location.reload();
+    })
+  }
+
+  resquestPermission() {
+    this.messaging.requestToken
+        .subscribe(token => {
+          console.log(token);
+          this.tokensCollection.add({token});
+        })
+  }
+
+  listenNotification() {
+    this.messaging.messages
+        .subscribe(message => {
+          console.log(message);
+        })
+  }
+
 
 }
